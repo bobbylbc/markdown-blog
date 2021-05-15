@@ -1,0 +1,12 @@
+node_modules
+README.md
+package.json
+package-lock.json
+yarn-lock
+**/*.log
+www
+coverage
+platforms
+plugins
+dist
+jsconfig.json
