@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev-start": "nodemon server.js",
+    "dev-start": "nodemon server-mongoose.js",
     "lint": "eslint '**/*.{js,vue}'",
     "lint:fix": "eslint --fix '**/*.{js,vue}'"
   },
@@ -15,12 +15,17 @@
     "jsdom": "^16.5.3",
     "marked": "^2.0.3",
     "method-override": "^3.0.0",
+    "mongodb": "^3.6.6",
     "mongoose": "^5.12.4",
     "mysql": "^2.18.1",
     "slugify": "^1.5.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7",
+    "babel-core": "^7.0.0-beta.3",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^25.3.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
     "eslint": "^7.24.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-prettier": "^6.12.0",
@@ -33,11 +38,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^6.2.2",
-    "babel-core": "^7.0.0-beta.3",
-    "babel-eslint": "^10.1.0",
-    "babel-jest": "^25.3.0",
-    "babel-loader": "^8.0.6",
-    "babel-preset-env": "^1.7.0",
+    "nodemon": "^2.0.7",
     "prettier": "^2.1.2"
   }
 }

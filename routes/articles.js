@@ -42,6 +42,7 @@ function saveArticleAndRedirect(path) {
 		let article = req.article
 		article.title = req.body.title
 		article.description = req.body.description
+		article.age = req.body.age
 		article.markdown = req.body.markdown
 
 		try {

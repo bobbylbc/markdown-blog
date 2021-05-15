@@ -14,6 +14,9 @@ const articleSchema = new mongoose.Schema({
 	description: {
 		type: String
 	},
+	age: {
+		type: Number
+	},
 	markdown: {
 		type: String,
 		required: true
