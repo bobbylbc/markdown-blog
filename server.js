@@ -4,6 +4,7 @@ const methodOverride = require('method-override')
 const config = require('config')
 const Article = require('./models/article')
 const articleRouter = require('./routes/articles')
+const apiRouter = require('./routes/api')
 
 console.debug('config: ', config.get('app'), config.get('db'))
 const _appPort = config.get('app.port')
@@ -21,6 +22,7 @@ app.set('view engine', 'ejs')
 app.set('port', _appPort)
 
 app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 app.use(methodOverride('_method'))
 
 app.get('/', async (req, res) => {
@@ -29,4 +31,5 @@ app.get('/', async (req, res) => {
 })
 
 app.use('/articles', articleRouter)
+app.use('/api', apiRouter)
 app.listen(_appPort)
