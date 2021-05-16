@@ -1,24 +1,32 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
+const config = require('config')
 const Article = require('./models/article')
 const articleRouter = require('./routes/articles')
-const methodOverride = require('method-override')
+
+console.debug('config: ', config.get('app'), config.get('db'))
+const _appPort = config.get('app.port')
+const _dbUrl = config.get('db.url')
+
 const app = express()
 
-mongoose.connect('mongodb://localhost/blog', {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-  useCreateIndex: true,
+mongoose.connect(_dbUrl, {
+	useUnifiedTopology: true,
+	useNewUrlParser: true,
+	useCreateIndex: true
 })
 
 app.set('view engine', 'ejs')
+app.set('port', _appPort)
+
 app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride('_method'))
 
 app.get('/', async (req, res) => {
-  const articles = await Article.find().sort({ createdAt: 'desc' })
-  res.render('articles/index', { articles: articles })
+	const articles = await Article.find().sort({ createdAt: 'desc' })
+	res.render('articles/index', { articles })
 })
 
 app.use('/articles', articleRouter)
-app.listen(5000)
+app.listen(_appPort)
