@@ -43,5 +43,8 @@
     "eslint-plugin-vue": "^6.2.2",
     "nodemon": "^2.0.7",
     "prettier": "^2.1.2"
+  },
+  "engines": {
+    "yarn": "1.x"
   }
 }
