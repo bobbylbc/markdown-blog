@@ -66,11 +66,11 @@ exports.delete = (req, res) => {
 		{
 			_id: req.params.id
 		},
-		(err, _record) => {
+		(err, record) => {
 			if (err) res.send(err)
 			res.json({
 				status: 'success',
-				message: `${req.params.id} deleted`
+				message: `${req.params.id} deleted, ${record}`
 			})
 		}
 	)

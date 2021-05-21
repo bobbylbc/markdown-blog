@@ -1,4 +1,4 @@
-const Contact = require('../models/Contact')
+const Contact = require('../models/contact')
 
 // Handle index actions
 exports.index = (req, res) => {
@@ -36,7 +36,7 @@ exports.new = (req, res) => {
 }
 // Handle view contact info
 exports.view = (req, res) => {
-	Contact.findById(req.params.contact_id, function (err, contact) {
+	Contact.findById(req.params.contact_id, (err, contact) => {
 		if (err) res.send(err)
 		res.json({
 			message: 'Contact details loading..',
@@ -53,8 +53,8 @@ exports.update = (req, res) => {
 		contact.email = req.body.email
 		contact.phone = req.body.phone
 		// save the contact and check for errors
-		contact.save((err) => {
-			if (err) res.json(err)
+		contact.save((error) => {
+			if (error) res.json(error)
 			res.json({
 				message: 'Contact Info updated',
 				data: contact
@@ -72,7 +72,7 @@ exports.delete = (req, res) => {
 			if (err) res.send(err)
 			res.json({
 				status: 'success',
-				message: 'Contact deleted'
+				message: `Contact deleted, ${contact}`
 			})
 		}
 	)
