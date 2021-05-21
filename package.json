@@ -6,7 +6,7 @@
   "scripts": {
     "dev-start-local": "cross-env NODE_ENV=development-local nodemon server.js",
     "dev-start-cloud": "cross-env NODE_ENV=development-cloud nodemon server.js",
-    "start": "cross-env NODE_ENV=development-cloud node server.js",
+    "start": "cross-env NODE_ENV=development-cloud nodemon server.js",
     "lint": "eslint '**/*.{js,vue}'",
     "lint:fix": "eslint --fix '**/*.{js,vue}'"
   },
