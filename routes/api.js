@@ -6,10 +6,20 @@ router.get('/', (req, res) => {
 		message: 'Welcome to RESTHub crafted with love!'
 	})
 })
-// Import contact controller
+
 const contactController = require('../controller/contact')
-// Contact routes
+
 router.route('/contacts').get(contactController.index).post(contactController.new)
 router.route('/contacts/:contact_id').get(contactController.view).patch(contactController.update).put(contactController.update).delete(contactController.delete)
-// Export API routes
+
+const shipRegistryController = require('../controller/shipRegistry')
+
+router.route('/shipRegistry').get(shipRegistryController.index).post(shipRegistryController.new)
+router
+	.route('/shipRegistry/:id')
+	.get(shipRegistryController.view)
+	.patch(shipRegistryController.update)
+	.put(shipRegistryController.update)
+	.delete(shipRegistryController.delete)
+
 module.exports = router

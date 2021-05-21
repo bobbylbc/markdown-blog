@@ -1,4 +1,5 @@
-const Contact = require('../models/contact')
+const Contact = require('../models/Contact')
+
 // Handle index actions
 exports.index = (req, res) => {
 	Contact.get((err, contacts) => {

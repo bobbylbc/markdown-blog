@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const config = require('config')
 const history = require('connect-history-api-fallback')
-const Article = require('./models/article')
+const Article = require('./models/Article')
 const articleRouter = require('./routes/articles')
 const apiRouter = require('./routes/api')
 
@@ -26,7 +26,15 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(methodOverride('_method'))
 
-// Setup SPA static folder
+app.get('/', async (req, res) => {
+	const articles = await Article.find().sort({ createdAt: 'desc' })
+	res.render('articles/index', { articles })
+})
+
+app.use('/articles', articleRouter)
+app.use('/api', apiRouter)
+
+// ====== Setup SPA static folder ========
 const staticFileMiddleware = express.static('static/www')
 app.use(staticFileMiddleware)
 app.use(
@@ -38,14 +46,8 @@ app.use(
 	})
 )
 app.use(staticFileMiddleware)
+// ========================================
 
-app.get('/', async (req, res) => {
-	const articles = await Article.find().sort({ createdAt: 'desc' })
-	res.render('articles/index', { articles })
-})
-
-app.use('/articles', articleRouter)
-app.use('/api', apiRouter)
 app.listen(_appPort, () => {
 	console.debug(`App started at port ${_appPort}`)
 })
