@@ -1,0 +1,8 @@
+{
+    "app": {
+        "port": 80
+    },
+    "db":  {
+        "url": "mongodb+srv://db_admin2:Trvdw2TC92kWK1kI@cluster0.9ssgl.mongodb.net/shipyard-audit?retryWrites=true&w=majority"
+    }
+}

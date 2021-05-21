@@ -6,7 +6,7 @@ const history = require('connect-history-api-fallback')
 const apiRouter = require('./routes/api')
 
 console.debug('config: ', config.get('app'), config.get('db'))
-const _appPort = config.get('app.port')
+const _appPort = process.env.PORT || config.get('app.port')
 const _dbUrl = config.get('db.url')
 
 const app = express()
