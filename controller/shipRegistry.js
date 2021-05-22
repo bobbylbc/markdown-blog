@@ -36,8 +36,16 @@ exports.new = (req, res) => {
 }
 
 exports.view = (req, res) => {
-	ShipRegistry.findById(req.params.id, (err, record) => {
+	const id = req.params.id
+	ShipRegistry.findById(id, (err, record) => {
 		if (err) res.send(err)
+		else if (!record)
+			res.send({
+				systemInformation: {
+					errorCode: 'A001',
+					errorMessage: `${id} record not found`
+				}
+			})
 		else
 			res.json({
 				message: `${name}: ${record._id} details loading..`,
@@ -47,13 +55,22 @@ exports.view = (req, res) => {
 }
 
 exports.findByVesselCode = (req, res) => {
-	ShipRegistry.findOne({ vesselCode: req.params.vessel_code }, (err, record) => {
+	const vesselCode = req.params.vessel_code
+	ShipRegistry.findOne({ vesselCode }, (err, record) => {
 		if (err) res.send(err)
-		else
+		else if (!record)
+			res.send({
+				systemInformation: {
+					errorCode: 'A001',
+					errorMessage: `${vesselCode} record not found`
+				}
+			})
+		else {
 			res.json({
 				message: `${name}: ${record._id} details loading..`,
 				data: record
 			})
+		}
 	})
 }
 
