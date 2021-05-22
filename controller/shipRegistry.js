@@ -1,20 +1,21 @@
+const e = require('express')
 const { ShipRegistry, shipRegistryFieldNames } = require('../models/ShipRegistry')
 
 const name = 'ShipRegistry'
 
 exports.index = (req, res) => {
 	ShipRegistry.get((err, records) => {
-		if (err) {
+		if (err)
 			res.json({
 				status: 'error',
 				message: err
 			})
-		}
-		res.json({
-			status: 'success',
-			message: `${name} retrieved successfully`,
-			data: records
-		})
+		else
+			res.json({
+				status: 'success',
+				message: `${name} retrieved successfully`,
+				data: records
+			})
 	})
 }
 
@@ -37,10 +38,22 @@ exports.new = (req, res) => {
 exports.view = (req, res) => {
 	ShipRegistry.findById(req.params.id, (err, record) => {
 		if (err) res.send(err)
-		res.json({
-			message: `${name}, ${record._id} details loading..`,
-			data: record
-		})
+		else
+			res.json({
+				message: `${name}: ${record._id} details loading..`,
+				data: record
+			})
+	})
+}
+
+exports.findByVesselCode = (req, res) => {
+	ShipRegistry.findOne({ vesselCode: req.params.vessel_code }, (err, record) => {
+		if (err) res.send(err)
+		else
+			res.json({
+				message: `${name}: ${record._id} details loading..`,
+				data: record
+			})
 	})
 }
 
@@ -53,10 +66,11 @@ exports.update = (req, res) => {
 		// save the record and check for errors
 		record.save((error) => {
 			if (error) res.json(error)
-			res.json({
-				message: 'ShipRegistry Info updated',
-				data: record
-			})
+			else
+				res.json({
+					message: 'ShipRegistry Info updated',
+					data: record
+				})
 		})
 	})
 }
@@ -68,10 +82,11 @@ exports.delete = (req, res) => {
 		},
 		(err, record) => {
 			if (err) res.send(err)
-			res.json({
-				status: 'success',
-				message: `${req.params.id} deleted, ${record}`
-			})
+			else
+				res.json({
+					status: 'success',
+					message: `${req.params.id} deleted, ${record}`
+				})
 		}
 	)
 }
