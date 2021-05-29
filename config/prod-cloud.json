@@ -1,8 +1,9 @@
 {
     "app": {
-        "port": 80
+        "port": 5000
     },
     "db":  {
-        "url": "mongodb+srv://db_admin2:Trvdw2TC92kWK1kI@cluster0.9ssgl.mongodb.net/shipyard-audit?retryWrites=true&w=majority"
+        "url": "mongodb+srv://@cluster0.9ssgl.mongodb.net/shipyard-audit?retryWrites=true&w=majority",
+        "connectRetry": 3
     }
 }
