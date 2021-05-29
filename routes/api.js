@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
 const shipRegistryController = require('../controller/shipRegistry')
 
 router.route('/shipRegistry').get(shipRegistryController.index).post(shipRegistryController.new)
+router.route('/shipRegistry/schema').get(shipRegistryController.schema)
 router
 	.route('/shipRegistry/:id')
 	.get(shipRegistryController.view)

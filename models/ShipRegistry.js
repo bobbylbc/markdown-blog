@@ -31,25 +31,5 @@ ShipRegistry.get = (callback, limit) => {
 	ShipRegistry.find(callback).limit(limit)
 }
 module.exports = {
-	ShipRegistry: mongoose.model('ShipRegistry', shipRegistrySchema),
-	shipRegistryFieldNames: [
-		'vesselCode',
-		'vesselName',
-		'vesselType',
-		'imo',
-		'yearBuilt',
-		'availability',
-		'loa',
-		'breadth',
-		'maxDraft',
-		'grossTonnage',
-		'netTonnage',
-		'deadweightTonnage',
-		'flag',
-		'class',
-		'portOfRegistry',
-		'statusOfVessel',
-		'characteristics',
-		'specialCharacteristics'
-	]
+	ShipRegistry: mongoose.model('ShipRegistry', shipRegistrySchema)
 }

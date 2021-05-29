@@ -1,7 +1,15 @@
 const e = require('express')
-const { ShipRegistry, shipRegistryFieldNames } = require('../models/ShipRegistry')
+const { ShipRegistry } = require('../models/ShipRegistry')
 
 const name = 'ShipRegistry'
+const shipRegistryFieldNames = Object.keys(ShipRegistry.schema.obj)
+
+exports.schema = (req, res) => {
+	return res.json({
+		status: 'success',
+		schema: Object.keys(ShipRegistry.schema.obj)
+	})
+}
 
 exports.index = (req, res) => {
 	ShipRegistry.get((err, records) => {
